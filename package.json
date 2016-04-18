@@ -1,0 +1,24 @@
+{
+  "name": "react-ultimate-pagination-examples",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultimate-pagination/react-ultimate-pagination-examples.git"
+  },
+  "author": "Dmytro Yarmak <dmytroyarmak@gmail.com> (http://dmytroyarmak.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ultimate-pagination/react-ultimate-pagination-examples/issues"
+  },
+  "homepage": "https://github.com/ultimate-pagination/react-ultimate-pagination-examples#readme",
+  "dependencies": {
+    "react": "15.0.1",
+    "react-dom": "15.0.1",
+    "react-ultimate-pagination": "0.0.1"
+  }
+}
