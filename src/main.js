@@ -1,6 +1,20 @@
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+// Needed for onTouchTap
+// Can go away when react 1.0 release
+// Check this repo:
+// https://github.com/zilverline/react-tap-event-plugin
+injectTapEventPlugin();
+
 import React from 'react';
 import ReactDom from 'react-dom';
-import {UltimatePagination} from 'react-ultimate-pagination';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+import UltimatePagination from 'react-ultimate-pagination-material-ui';
+
+const lightMuiTheme = getMuiTheme(lightBaseTheme);
 
 const styles = {
   label: {
@@ -89,4 +103,4 @@ class App extends React.Component {
   }
 }
 
-ReactDom.render(<App />, document.getElementById('main'));
+ReactDom.render(<MuiThemeProvider muiTheme={lightMuiTheme}><App /></MuiThemeProvider>, document.getElementById('main'));
