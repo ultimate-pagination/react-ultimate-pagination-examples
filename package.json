@@ -23,7 +23,7 @@
     "react": "15.0.1",
     "react-dom": "15.0.1",
     "material-ui": "0.15.0-beta.1",
-    "react-ultimate-pagination-material-ui": "0.2.0"
+    "react-ultimate-pagination-material-ui": "0.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
