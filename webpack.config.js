@@ -1,9 +1,17 @@
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var path = require('path');
+
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: './dist',
-    publicPath: '/dist/',
+    path: './build',
+    publicPath: '/build/',
     filename: 'bundle.js',
+  },
+  devtool: 'source-map',
+  devServer: {
+    contentBase: './build',
+    outputPath: path.join(__dirname, 'build')
   },
   module: {
     loaders: [
@@ -16,5 +24,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      {from: './src/index.html'},
+    ])
+  ]
 };
