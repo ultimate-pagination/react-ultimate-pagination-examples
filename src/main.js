@@ -30,22 +30,26 @@ class App extends React.Component {
   constructor() {
     super();
 
-    this.onTotalPagesChange = this.onTotalPagesChange.bind(this);
-    this.onCurrentPageChange = this.onCurrentPageChange.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
     this.onPageChangeFromPagination = this.onPageChangeFromPagination.bind(this);
 
     this.state = {
-      currentPage: 1,
-      totalPages: 10
+      currentPage: 50,
+      totalPages: 100,
+      boundaryPagesRange: 1,
+      siblingPagesRange: 1,
+      hidePreviousAndNextPageLinks: false,
+      hideFirstAndLastPageLinks: false,
+      hideEllipsis: false
     };
   }
 
-  onTotalPagesChange(event) {
-    this.setState({totalPages: +event.target.value});
-  }
-
-  onCurrentPageChange(event) {
-    this.setState({currentPage: +event.target.value});
+  onInputChange(name) {
+    return (event) => {
+      const target = event.target;
+      const value = target.type === 'checkbox' ? target.checked : +target.value;
+      this.setState({[name]: value})
+    };
   }
 
   onPageChangeFromPagination(newPage) {
@@ -68,10 +72,9 @@ class App extends React.Component {
               style={styles.input}
               value={this.state.totalPages}
               min="1"
-              onChange={this.onTotalPagesChange}
+              onChange={this.onInputChange('totalPages')}
             />
           </div>
-
 
           <div>
             <label htmlFor="currentPage" style={styles.label}>
@@ -84,17 +87,88 @@ class App extends React.Component {
               value={this.state.currentPage}
               min="1"
               max={this.state.totalPages}
-              onChange={this.onCurrentPageChange}
+              onChange={this.onInputChange('currentPage')}
             />
+          </div>
+
+          <div>
+            <label htmlFor="boundaryPagesRange" style={styles.label}>
+              Boundary pages range:
+            </label>
+            <input
+              type="number"
+              id="boundaryPagesRange"
+              style={styles.input}
+              value={this.state.boundaryPagesRange}
+              min="0"
+              onChange={this.onInputChange('boundaryPagesRange')}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="siblingPagesRange" style={styles.label}>
+              Sibling pages range:
+            </label>
+            <input
+              type="number"
+              id="siblingPagesRange"
+              style={styles.input}
+              value={this.state.siblingPagesRange}
+              min="0"
+              onChange={this.onInputChange('siblingPagesRange')}
+            />
+          </div>
+
+          <div>
+            <label style={styles.label}>
+              <input
+                type="checkbox"
+                id="hidePreviousAndNextPageLinks"
+                checked={this.state.hidePreviousAndNextPageLinks}
+                onChange={this.onInputChange('hidePreviousAndNextPageLinks')}
+              />
+              Hide previous and next page links
+            </label>
+          </div>
+
+          <div>
+            <label style={styles.label}>
+              <input
+                type="checkbox"
+                id="hideFirstAndLastPageLinks"
+                checked={this.state.hideFirstAndLastPageLinks}
+                onChange={this.onInputChange('hideFirstAndLastPageLinks')}
+              />
+              Hide first and last page links
+            </label>
+          </div>
+
+          <div>
+            <label style={styles.label}>
+              <input
+                type="checkbox"
+                id="hideEllipsis"
+                checked={this.state.hideEllipsis}
+                onChange={this.onInputChange('hideEllipsis')}
+              />
+              Hide ellipsis
+            </label>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Live example</legend>
 
+          <pre>{this.state.hidePreviousAndNextPageLinks}</pre>
+
           <UltimatePagination
             currentPage={this.state.currentPage}
             totalPages={this.state.totalPages}
+            boundaryPagesRange={this.state.boundaryPagesRange}
+            siblingPagesRange={this.state.siblingPagesRange}
+            hidePreviousAndNextPageLinks={this.state.hidePreviousAndNextPageLinks}
+            hideFirstAndLastPageLinks={this.state.hideFirstAndLastPageLinks}
+            hideEllipsis={this.state.hideEllipsis}
             onChange={this.onPageChangeFromPagination}
           />
         </fieldset>
