@@ -40,7 +40,8 @@ class App extends React.Component {
       siblingPagesRange: 1,
       hidePreviousAndNextPageLinks: false,
       hideFirstAndLastPageLinks: false,
-      hideEllipsis: false
+      hideEllipsis: false,
+      disabled: false
     };
   }
 
@@ -154,6 +155,17 @@ class App extends React.Component {
               Hide ellipsis
             </label>
           </div>
+          <div>
+            <label style={styles.label}>
+              <input
+                type="checkbox"
+                id="disabled"
+                checked={this.state.disabled}
+                onChange={this.onInputChange('disabled')}
+              />
+              Disabled
+            </label>
+          </div>
         </fieldset>
 
         <fieldset>
@@ -170,6 +182,7 @@ class App extends React.Component {
             hideFirstAndLastPageLinks={this.state.hideFirstAndLastPageLinks}
             hideEllipsis={this.state.hideEllipsis}
             onChange={this.onPageChangeFromPagination}
+            disabled={this.state.disabled}
           />
         </fieldset>
       </div>
